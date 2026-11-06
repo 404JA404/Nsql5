@@ -1,0 +1,55 @@
+create database SQL2;
+
+use SQL2;
+
+CREATE TABLE cliente (
+    cliente_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    fecha_registro DATE NOT NULL,
+    ciudad VARCHAR(100) NOT NULL,
+    activo TINYINT(1) NOT NULL DEFAULT 1
+);
+
+INSERT INTO cliente (nombre, apellido, fecha_registro, ciudad, activo) VALUES
+('Jane', 'Doe', '2025-01-15', 'Pereira', 1),
+('Ana', 'Martínez', '2025-02-20', 'Bogotá', 1),
+('Luis', 'Rodríguez', '2025-03-10', 'Pereira', 0),
+('Sofía', 'López', '2025-04-05', 'Medellín', 1),
+('María', 'Fernández', '2025-05-02', 'Pereira', 1),
+('Javier', 'Torres', '2025-05-18', 'Manizales', 1),
+('Elena', 'Ramírez', '2025-06-01', 'Pereira', 1),
+('Diego', 'Morales', '2025-06-25', 'Cali', 0);
+
+CREATE INDEX idx_ciudad_activo ON cliente(ciudad, activo);
+
+SHOW TABLES;
+DESCRIBE cliente;
+SHOW INDEX FROM cliente;
+SELECT cliente_id, nombre, apellido, ciudad, fecha_registro, activo
+FROM cliente
+ORDER BY cliente_id;
+
+-- preguntas de actividad 2
+
+-- 1) ¿Qué columnas tiene la tabla cliente y cuáles son sus tipos de datos?
+
+-- R: tiene las columnas cliente id, nombre, apellido, ciudad, fecha registro y activo
+
+-- cada columna cuenta con sus respectivos datos insertados en cliente
+
+-- 2) ¿Qué columna identifica de forma única cada registro?
+
+-- R la columna es fecha_registro, que contiene todas las fechas, como su nombre indica
+
+-- 3) ¿Qué índices aparecen actualmente?
+
+-- R al mostrar indices, nos da cliente_id, ciudad y activdad 
+
+-- 4) ¿Qué diferencia encuentras entre consultar los datos mediante SQL y visualizarlos desde el navegador gráfico?
+
+-- R explain me enseña un cuadrado con diferentes consultas, debo de escribirlo antes de el select
+
+-- por otra parte visualizar plan de ejecucion es una forma mas directa de hacer lo mismo
+
+-- dando datos mas pulidos en lugar de solo texto
