@@ -1,0 +1,67 @@
+create database SQL2;
+
+use SQL2;
+
+CREATE TABLE cliente (
+    cliente_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    fecha_registro DATE NOT NULL,
+    ciudad VARCHAR(100) NOT NULL,
+    activo TINYINT(1) NOT NULL DEFAULT 1
+);
+
+INSERT INTO cliente (nombre, apellido, fecha_registro, ciudad, activo) VALUES
+('Jane', 'Doe', '2025-01-15', 'Pereira', 1),
+('Ana', 'Martínez', '2025-02-20', 'Bogotá', 1),
+('Luis', 'Rodríguez', '2025-03-10', 'Pereira', 0),
+('Sofía', 'López', '2025-04-05', 'Medellín', 1),
+('María', 'Fernández', '2025-05-02', 'Pereira', 1),
+('Javier', 'Torres', '2025-05-18', 'Manizales', 1),
+('Elena', 'Ramírez', '2025-06-01', 'Pereira', 1),
+('Diego', 'Morales', '2025-06-25', 'Cali', 0);
+
+CREATE INDEX idx_ciudad_activo ON cliente(ciudad, activo);
+
+-- EXPLAIN DE LA CONSULTA ORIGINAL
+EXPLAIN
+SELECT *
+FROM cliente
+WHERE YEAR(fecha_registro) = 2025
+AND ciudad = 'Manizales';
+
+-- EXPLAIN DE LA CONSULTA OPTIMIZADA POR LA IA
+EXPLAIN
+SELECT cliente_id, nombre, apellido, fecha_registro
+FROM cliente
+WHERE fecha_registro >= '2025-01-01'
+AND fecha_registro < '2026-01-01'
+AND ciudad = 'Manizales';
+
+-- prompt utilizado
+-- Actúa como un asistente experto en MySQL 8 y optimización de consultas.
+
+-- Estoy realizando una actividad académica sobre optimización de consultas SQL. Necesito que analices la siguiente consulta:
+
+-- sql
+-- SELECT *
+-- FROM cliente
+-- WHERE YEAR(fecha_registro) = 2025
+--  AND ciudad = 'Manizales';
+
+
+-- Realiza lo siguiente:
+
+-- 1. Explica qué hace la consulta.
+-- 2. Identifica posibles problemas o limitaciones de rendimiento.
+-- 3. Explica por qué utilizar YEAR() sobre fecha_registro podría dificultar el aprovechamiento de un índice convencional.
+-- 4. Propón una versión alternativa que conserve exactamente la misma lógica y los mismos resultados.
+-- 5. Explica qué cambios realizaste y por qué podrían mejorar el rendimiento.
+-- 6. Indica si sería necesario crear algún índice adicional o si conviene revisar primero los índices existentes.
+
+-- Después, presenta una comparación entre ambas consultas y explica cómo puedo comprobar sus resultados utilizando EXPLAIN en MySQL.
+
+-- No inventes índices ni asegures mejoras de velocidad sin evidencia. Explica todo con un lenguaje sencillo y apropiado para un estudiante principiante.
+
+
+-- los comandos han sido comprobados y han dado resultados exitosos
