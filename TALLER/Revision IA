@@ -1,0 +1,18 @@
+Actúa como un experto en MySQL 8 y optimización de consultas SQL.
+
+Analiza la siguiente consulta:
+
+SELECT *
+FROM cliente
+WHERE YEAR(fecha_registro) = 2025
+AND ciudad = 'Manizales';
+
+Explica qué hace la consulta, identifica posibles problemas de rendimiento y propone mejoras sin cambiar la lógica de los resultados.
+
+Explica por qué utilizar YEAR() sobre fecha_registro puede dificultar el uso de índices convencionales.
+
+Propón una consulta alternativa utilizando un rango de fechas y explica los cambios realizados.
+
+Finalmente, indica si sería necesario crear un índice adicional o si conviene revisar primero los índices existentes.
+
+Utiliza un lenguaje sencillo y apropiado para un estudiante principiante.
