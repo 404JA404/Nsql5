@@ -1,0 +1,18 @@
+consulta original 
+
+SELECT *
+FROM cliente
+WHERE YEAR(fecha_registro) = 2025
+AND ciudad = 'Manizales';
+
+
+consulta dada por la ia
+
+SELECT *
+FROM cliente
+WHERE fecha_registro >= '2025-01-01'
+AND fecha_registro < '2026-01-01'
+AND ciudad = 'Manizales';
+
+La mejora propuesta consiste en reemplazar YEAR() por un rango de fechas
+Esto permite que MySQL pueda aprovechar un índice convencional sobre la columna fecha_registro, si existe y el optimizador considera conveniente utilizarlo
